@@ -1,12 +1,24 @@
 let express = require('express');
 let app = express();
-require('dotenv').config()
 
 console.log("Hello World");
 
-app.get("/json", (req,res)=>{
-    res.json(process.env.MESSAGE_STYLE.toUpperCase())
+app.get("/", (req, res) => {
+    res.json({"message": "Hello json"})
 });
+
+app.get("/json", (req, res) => {
+    let response;
+        if(process.env.MESSAGE_STYLE === "allCaps")
+        {
+            response = "Hello World!".toUpperCase();
+        }
+        else{
+            response = "Hello World!";
+        }
+        res.json({message:response})
+    }
+)
 
 
 // app should not serve files from any other folders except from /public directory
