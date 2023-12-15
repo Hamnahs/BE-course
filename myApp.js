@@ -8,6 +8,7 @@ app.get("/", (req, res) => {
 });
 
 
+absolutePath = __dirname + '/views/index.html'
 
 
 
