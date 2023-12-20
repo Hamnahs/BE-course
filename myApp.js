@@ -6,7 +6,7 @@ const logger = (req, res, next) => {
     next();
 };
 
-app.get("/json", logger, (req, res) => {
+app.use(logger, (req, res) => {
     res.sendFile('/views/index.html');
 });
 
