@@ -2,12 +2,24 @@ let express = require('express');
 let app = express();
 
 
+// Define a logger middleware function
 const logger = (req, res, next) => {
-    res.json(`${req.method} ${req.path} - ${req.ip}`);
+    console.log(`${req.method} ${req.path} - ${req.ip}`);
     next();
 };
 
+// Mount the logger middleware at the root level
 app.use(logger);
+
+app.get('/json', (req, res) => {
+    res.json({ message: 'Hello, world!' });
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
 
 app.get("/", (req, res) => {
     res.json({"message": "Hello json"})
