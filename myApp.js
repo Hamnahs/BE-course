@@ -1,13 +1,12 @@
 let express = require('express');
 let app = express();
 
-const logger = (req, res, next) => {
-    console.log(`${req.method} ${req.path} - ${req.ip}`);
-    next();
-};
 
-app.use(function logger (req, res,next) {
-    console.log("I'm a middleware...");
+// app should not serve files from any other folders except from /public directory
+app.use("/public", express.static(__dirname + "/public"))
+
+app.use((req, res,next) => {
+    console.log(`${req.method} ${req.path} - ${req.ip}`);
     next();
 });
 
@@ -27,10 +26,5 @@ app.use(function logger (req, res,next) {
 //         res.json({message: response})
 //     }
 // )
-
-
-// app should not serve files from any other folders except from /public directory
-// app.use("/public", express.static(__dirname + "/public"))
-
 
 module.exports = app;
