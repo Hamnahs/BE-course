@@ -13,6 +13,12 @@ app.get('/json', (req, res) => {
     res.json({ message: 'Hello, world!' });
 });
 
+// Start the server
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
 // app.get("/", (req, res) => {
 //     res.json({"message": "Hello json"})
 // });
