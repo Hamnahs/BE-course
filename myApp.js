@@ -6,8 +6,9 @@ const logger = (req, res, next) => {
     next();
 };
 
-app.use(logger, (req, res) => {
-    res.json("I'm a middleware...");
+app.use(function logger (req, res,next) {
+    console.log("I'm a middleware...");
+    next();
 });
 
 
