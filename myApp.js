@@ -1,14 +1,15 @@
 let express = require('express');
 let app = express();
 
-app.use(function middleware(req, res, next) {
+app.use("/json",function middleware(req, res, next) {
     console.log(`${req.method} ${req.path} - ${req.ip}`);
+    console.log("I'm a middleware...");
     next();
 });
 
-app.get("/", (req, res) => {
-    res.json({"message": "Hello json"})
-});
+// app.get("/", (req, res) => {
+//     res.json({"message": "Hello json"})
+// });
 
 // app.get("/json", (req, res) => {
 //         let response;
