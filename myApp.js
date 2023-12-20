@@ -7,8 +7,10 @@ const logger = (req, res, next) => {
 };
 
 app.use(logger, (req, res) => {
-    res.sendFile('/views/index.html');
+    res.json("I'm a middleware...");
 });
+
+
 
 // app.get("/", (req, res) => {
 //     res.json({"message": "Hello json"})
