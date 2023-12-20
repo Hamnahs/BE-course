@@ -1,7 +1,13 @@
 let express = require('express');
 let app = express();
 
-console.log("Hello World");
+
+const logger = (req, res, next) => {
+    res.json(`${req.method} ${req.path} - ${req.ip}`);
+    next();
+};
+
+app.use(logger);
 
 app.get("/", (req, res) => {
     res.json({"message": "Hello json"})
@@ -18,16 +24,6 @@ app.get("/", (req, res) => {
 //     }
 // )
 
-const logger = (req, res, next) => {
-    console.log(`${req.method} ${req.path} - ${req.ip}`);
-    next();
-};
-
-app.use(logger);
-
-app.get('/json', (req, res) => {
-    res.json({message: 'Hello, worldyyyyyyyyyyyyyy!'});
-});
 
 // app should not serve files from any other folders except from /public directory
 // app.use("/public", express.static(__dirname + "/public"))
